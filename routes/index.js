@@ -10,35 +10,46 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.post('/disease', function(req, res, next) {
-  var disease = new Disease({
-    name: req.body.diseaseName,
-    symptom: req.body.symptom,
-    medicine: req.body.medicine
-  })
-  disease.save(function(err, user) {
-    if (err)
-      console.log("err saving disease", err);
-  })
-  var user = new User({
-    disease: disease
-  });
-  user.save(function(err, user) {
+  //Praneet's algorithm
+  var disease = 'Heartache';
+  disease.findOne({"name": disease}, function(err, d) {
     if (err) {
-      console.log("err saving user", err);
+      console.log(err, "err finding disease");
     } else {
-      res.send("{'disease': '" + user.desease + "'}");
+      var user = new User({
+        disease: d,
+        symptom: req.body.symptom,
+        phoneNumber: 5083141804
+      });
+      user.save(function(err, user) {
+        if (err) {
+          console.log("err saving user", err);
+        } else {
+          res.send("{'disease': '" + user.disease + "'}");
+        }
+      })
     }
   })
 });
 
-router.post('/sendMessage', function(req, res, next) {
+router.post('/medicine', function(req, res, next) {
   var message = req.body.message;
   var number = req.body.number;
-
+//return the medicine
   var twilio = Object.create(Twilio);
   twilio.sendMessage(number, message);
   res.send('ok');
 });
+
+router.post('/sendMessage', function(req, res, next) {
+  var message = req.body.message; // need to construct the message
+  var number = req.body.number;
+
+  var twilio = Object.create(Twilio);
+  twilio.sendMessage(number, message);
+  res.send('Sure...');
+});
+
 
 
 module.exports = router;
