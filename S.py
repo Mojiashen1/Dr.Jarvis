@@ -137,4 +137,4 @@ def pdreturnclass(s):
 
 
 "EXAMPLE TEST"
-#print pdreturnclass("My heart hurts")
+print pdreturnclass("My heart hurts")
