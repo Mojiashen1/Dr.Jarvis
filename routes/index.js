@@ -11,25 +11,43 @@ router.get('/', function(req, res, next) {
 /* GET home page. */
 router.post('/disease', function(req, res, next) {
   //Praneet's algorithm
-  var disease = 'Heartache';
-  Disease.findOne({"name": disease}, function(err, d) {
-    if (err) {
-      console.log(err, "err finding disease");
-    } else {
-      var user = new User({
-        disease: d,
-        symptom: req.body.symptom,
-        phoneNumber: 5083141804
-      });
-      user.save(function(err, user) {
+  var symptoms = req.query["symptoms"];
+  console.log(symptoms)
+  var spawn = require("child_process").spawn;
+  var process = spawn('python',["./python/S.py", symptoms]);
+
+  var data = ""
+  var disease = "";
+  process.stdout.on('data', function (data){
+    disease += data
+  });
+
+  process.on('exit', function()
+  {
+      console.log("The detected disease is " + disease);
+      console.log("Exit code is " + process.exitCode);
+
+      Disease.findOne({"name": disease}, function(err, d) {
         if (err) {
-          console.log("err saving user", err);
+          console.log(err, "err finding disease");
         } else {
-          res.send("{'disease': '" + disease + "'}");
+          var user = new User({
+            disease: d,
+            symptom: req.body.symptom,
+            phoneNumber: 5083141804
+          });
+          user.save(function(err, user) {
+            if (err) {
+              console.log("err saving user", err);
+            } else {
+              res.send("{'disease': '" + disease + "'}");
+            }
+          })
         }
       })
-    }
-  })
+  });
+
+
 });
 
 router.post('/medicine', function(req, res, next) {

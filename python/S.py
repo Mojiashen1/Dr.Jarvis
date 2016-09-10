@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Sep  9 21:44:08 2016
-
 @author: praneetdutta
 """
-def pdreturnclass(s):
+import sys
+
+
+def S(s):
  import re
  import pandas as pd
  import csv
  import nltk
- 
+
 #start process_tweet
  def processTweet(content):
     # process the tweets
-    
+
     content=content.lower()
     #Convert to lower case
-    
+
     #Convert www.* or https?://* to URL
     content = re.sub('((www\.[^\s]+)|(https?://[^\s]+))','URL',content)
     #Convert @username to AT_USER
@@ -29,13 +31,13 @@ def pdreturnclass(s):
     content = content.strip('\'"')
     return content
 #end
- 
+
 
 #initialize stopWords
  stopWords = []
 
  #start replaceTwoOrMore
- def replaceTwoOrMore(s):  
+ def replaceTwoOrMore(s):
     #look for 2 or more repetitions of character and replace with the character itself
     pattern = re.compile(r"(.)\1{1,}", re.DOTALL)
     return pattern.sub(r"\1\1", s)
@@ -80,7 +82,7 @@ def pdreturnclass(s):
 
 
 
-#start extract_features  
+#start extract_features
  def extract_features(tweet):
     tweet_words = set(tweet)
     features = {}
@@ -88,10 +90,10 @@ def pdreturnclass(s):
         features['contains(%s)' % word] = (word in tweet_words)
     return features
  #end
- #Read the tweets one by one and process it 
- inpTweets = pd.read_csv('testdata11.csv')
+ #Read the tweets one by one and process it
+ inpTweets = pd.read_csv('python/testdata11.csv')
  #print "hi"
- stopWords = getStopWordList('stopwords.txt') 
+ stopWords = getStopWordList('python/stopwords.txt')
 
 
 
@@ -103,7 +105,7 @@ def pdreturnclass(s):
 
  testinput=s
 
- processedTestTweet = processTweet(testinput) 
+ processedTestTweet = processTweet(testinput)
  #print "BYEEEEEEEE"
  #print "FALGTESSSSSST"
 
@@ -125,16 +127,27 @@ def pdreturnclass(s):
 
  NBClassifier = nltk.NaiveBayesClassifier.train(training_set)
  sentiment=NBClassifier.classify(extract_features(getFeatureVector(processedTestTweet)))
- 
+
  if(sentiment=='H'):
      return "Heart Disease"
- if(sentiment=="C"):
+ elif(sentiment=="C"):
      return "Catarct Disease"
- if(sentiment=="N"):
+ else:
      return "No Disease"
-     
- return sentiment
+
 
 
 "EXAMPLE TEST"
-print pdreturnclass("My heart hurts")
+#print pdreturnclass("My heart hurts")
+
+if __name__ == "__main__":
+
+    sys.stdout.write(S(sys.argv[1]));
+    #sys.stdout.write(S(sys.argv[1]));
+    #print(S(sys.argv[1]))
+    sys.stdout.flush()
+    #f = open('disease.txt', 'w')
+    #f.write("hello2")
+    #var result = S(sys.argv[1])
+    #f.write(result)
+    #f.close()
