@@ -3,21 +3,19 @@ var mongoose = require('mongoose');
 
 // Create a connect.js inside the models/ directory that
 // exports your MongoDB URI!
-var connect = process.env.MONGODBURI;
 
-mongoose.connect(connect);
 
 var userSchema = mongoose.Schema({
   symptom: String,
-  disease: [{
+  disease: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Disease'
-  }],
+  },
   medicine: String,
-  doctor: [{
+  doctor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Doctor'
-  }],
+  },
   phoneNumber: Number
 });
 
@@ -28,10 +26,12 @@ var doctorSchema = mongoose.Schema({
 
 var diseaseSchema = mongoose.Schema({
   name: String,
-  symptom: Number,
+  symptom: String,
   medicine: String
 });
+var connect = process.env.MONGODBURI;
 
+mongoose.connect(connect);
 // userSchema.plugin(findOrCreate);
 module.exports = {User: mongoose.model('User', userSchema),
 Doctor: mongoose.model('Doctor', doctorSchema),
