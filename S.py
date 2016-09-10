@@ -136,5 +136,5 @@ def pdreturnclass(s):
  return sentiment
 
 
-
-print pdreturnclass("My heart hurts")
+"EXAMPLE TEST"
+#print pdreturnclass("My heart hurts")
