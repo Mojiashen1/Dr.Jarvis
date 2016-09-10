@@ -11,6 +11,10 @@ var userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Disease'
   },
+<<<<<<< HEAD
+=======
+  medicine: String,
+>>>>>>> tmpbranch
   doctor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Doctor'
@@ -25,8 +29,13 @@ var doctorSchema = mongoose.Schema({
 
 var diseaseSchema = mongoose.Schema({
   name: String,
+<<<<<<< HEAD
   medicine: String,
   usage: String
+=======
+  symptom: String,
+  medicine: String
+>>>>>>> tmpbranch
 });
 var connect = process.env.MONGODBURI;
 

@@ -4,6 +4,7 @@ var Twilio = require('./twilio');
 var User = require('../models/models').User;
 var Disease = require('../models/models').Disease;
 
+<<<<<<< HEAD
 router.get('/', function(req, res, next) {
   res.send('I am ok');
 })
