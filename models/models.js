@@ -25,7 +25,6 @@ var doctorSchema = mongoose.Schema({
 
 var diseaseSchema = mongoose.Schema({
   name: String,
-  symptom: String,
   medicine: String,
   usage: String
 });
