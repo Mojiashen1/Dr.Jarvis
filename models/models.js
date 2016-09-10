@@ -18,6 +18,7 @@ var userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Doctor'
   }],
+  phoneNumber: Number
 });
 
 var doctorSchema = mongoose.Schema({
