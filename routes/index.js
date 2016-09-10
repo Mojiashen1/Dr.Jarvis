@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/disease', function(req, res, next) {
   //Praneet's algorithm
   var disease = 'Heartache';
-  disease.findOne({"name": disease}, function(err, d) {
+  Disease.findOne({"name": disease}, function(err, d) {
     if (err) {
       console.log(err, "err finding disease");
     } else {
@@ -25,7 +25,7 @@ router.post('/disease', function(req, res, next) {
         if (err) {
           console.log("err saving user", err);
         } else {
-          res.send("{'disease': '" + user.disease + "'}");
+          res.send("{'disease': '" + disease + "'}");
         }
       })
     }
@@ -33,21 +33,28 @@ router.post('/disease', function(req, res, next) {
 });
 
 router.post('/medicine', function(req, res, next) {
-  var message = req.body.message;
-  var number = req.body.number;
-//return the medicine
-  var twilio = Object.create(Twilio);
-  twilio.sendMessage(number, message);
-  res.send('ok');
+  User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
+    console.log('disease', user);
+    if (err) {
+      console.log(err, "err populating disease");
+    } else {
+      res.send("{'medicine': '" + user.disease.medicine + "'},{'usage': '" + user.disease.usage + "'}");
+    }
+  })
 });
 
 router.post('/sendMessage', function(req, res, next) {
   var message = req.body.message; // need to construct the message
   var number = req.body.number;
-
-  var twilio = Object.create(Twilio);
-  twilio.sendMessage(number, message);
-  res.send('Sure...');
+  User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
+    if (err) {
+      console.log(err, "err populating disease");
+    } else {
+      var twilio = Object.create(Twilio);
+      twilio.sendMessage(number, "Patrick asked me to send you this: He is feeling " + user.symptom + " , and he is diagnosed with " + user.disease.name + " .\n We recommend him to take " + user.disease.medicine);
+      res.send('Sure. I have sent a text message to your doctor');
+    }
+  })
 });
 
 
