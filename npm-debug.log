@@ -1,35 +1,33 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/Cellar/node/6.2.1/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'start' ]
-2 info using npm@3.9.3
-3 info using node@v6.2.1
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
+2 info using npm@3.10.3
+3 info using node@v6.5.0
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle Dr.Javis@0.0.0~prestart: Dr.Javis@0.0.0
 6 silly lifecycle Dr.Javis@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle Dr.Javis@0.0.0~start: Dr.Javis@0.0.0
 8 verbose lifecycle Dr.Javis@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle Dr.Javis@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/MOMO/Desktop/Dr.Javis/node_modules/.bin:/usr/local/Cellar/node/6.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-10 verbose lifecycle Dr.Javis@0.0.0~start: CWD: /Users/MOMO/Desktop/Dr.Javis
+9 verbose lifecycle Dr.Javis@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Vivek/Developer/Git/Dr.Jarvis/node_modules/.bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+10 verbose lifecycle Dr.Javis@0.0.0~start: CWD: /Users/Vivek/Developer/Git/Dr.Jarvis
 11 silly lifecycle Dr.Javis@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle Dr.Javis@0.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle Dr.Javis@0.0.0~start: Failed to exec start script
 14 verbose stack Error: Dr.Javis@0.0.0 start: `node ./bin/www`
 14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:245:16)
+14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:242:16)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:40:14)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at ChildProcess.emit (events.js:191:7)
-14 verbose stack     at maybeClose (internal/child_process.js:852:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+14 verbose stack     at maybeClose (internal/child_process.js:877:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid Dr.Javis@0.0.0
-16 verbose cwd /Users/MOMO/Desktop/Dr.Javis
-17 error Darwin 15.5.0
-18 error argv "/usr/local/Cellar/node/6.2.1/bin/node" "/usr/local/bin/npm" "start"
-19 error node v6.2.1
-20 error npm  v3.9.3
+16 verbose cwd /Users/Vivek/Developer/Git/Dr.Jarvis
+17 error Darwin 15.4.0
+18 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
+19 error node v6.5.0
+20 error npm  v3.10.3
 21 error code ELIFECYCLE
 22 error Dr.Javis@0.0.0 start: `node ./bin/www`
 22 error Exit status 1
