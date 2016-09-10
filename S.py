@@ -4,13 +4,14 @@ Created on Fri Sep  9 21:44:08 2016
 
 @author: praneetdutta
 """
-import re
-import pandas as pd
-import csv
-import nltk
-
+def pdreturnclass(s):
+ import re
+ import pandas as pd
+ import csv
+ import nltk
+ 
 #start process_tweet
-def processTweet(content):
+ def processTweet(content):
     # process the tweets
     
     content=content.lower()
@@ -28,20 +29,20 @@ def processTweet(content):
     content = content.strip('\'"')
     return content
 #end
-print "HIIIIIIIII"
+ 
 
 #initialize stopWords
-stopWords = []
+ stopWords = []
 
-#start replaceTwoOrMore
-def replaceTwoOrMore(s):  
+ #start replaceTwoOrMore
+ def replaceTwoOrMore(s):  
     #look for 2 or more repetitions of character and replace with the character itself
     pattern = re.compile(r"(.)\1{1,}", re.DOTALL)
     return pattern.sub(r"\1\1", s)
-#end
+ #end
 
-#start getStopWordList
-def getStopWordList(stopWordListFileName):
+ #start getStopWordList
+ def getStopWordList(stopWordListFileName):
     #read the stopwords file and build a list
     stopWords = []
     stopWords.append('AT_USER')
@@ -55,10 +56,10 @@ def getStopWordList(stopWordListFileName):
         line = fp.readline()
     fp.close()
     return stopWords
-#end
+ #end
 
 #start getfeatureVector
-def getFeatureVector(tweet):
+ def getFeatureVector(tweet):
     featureVector = []
     #split tweet into words
     words = tweet.split()
@@ -75,42 +76,41 @@ def getFeatureVector(tweet):
         else:
             featureVector.append(w.lower())
     return featureVector
-#end
+ #end
 
 
 
 #start extract_features  
-def extract_features(tweet):
+ def extract_features(tweet):
     tweet_words = set(tweet)
     features = {}
     for word in featureList:
         features['contains(%s)' % word] = (word in tweet_words)
     return features
-#end
-#Read the tweets one by one and process it 
-inpTweets = pd.read_csv('testdata11.csv')
-#print "hi"
-stopWords = getStopWordList('stopwords.txt') 
+ #end
+ #Read the tweets one by one and process it 
+ inpTweets = pd.read_csv('testdata11.csv')
+ #print "hi"
+ stopWords = getStopWordList('stopwords.txt') 
 
 
 
 
 
-featureList = []
-tweetss=inpTweets['Symptoms']
-sentiments=inpTweets['Disease']
+ featureList = []
+ tweetss=inpTweets['Symptoms']
+ sentiments=inpTweets['Disease']
 
-testinput="My eyes itchy"
+ testinput=s
 
-processedTestTweet = processTweet(testinput) 
-print "BYEEEEEEEE"
-print "FALGTESSSSSST"
+ processedTestTweet = processTweet(testinput) 
+ #print "BYEEEEEEEE"
+ #print "FALGTESSSSSST"
 
-ii=0
-## Get tweet words
-tweets = []
-finaltweets=[]
-for row in tweetss:
+ ii=0
+ tweets = []
+ finaltweets=[]
+ for row in tweetss:
     sentiment = sentiments[ii]
     tweet = row
     ii+=1
@@ -119,18 +119,22 @@ for row in tweetss:
     featureVector = getFeatureVector(processedTweet)
     featureList.extend(featureVector)
     tweets.append((featureVector, sentiment));
-#end loop
 
-print ii
-
-training_set = nltk.classify.util.apply_features(extract_features, tweets)
-
-# Train the Naive Bayes classifier
-NBClassifier = nltk.NaiveBayesClassifier.train(training_set)
-sentiment=NBClassifier.classify(extract_features(getFeatureVector(processedTestTweet)))
-print sentiment
+ training_set = nltk.classify.util.apply_features(extract_features, tweets)
 
 
+ NBClassifier = nltk.NaiveBayesClassifier.train(training_set)
+ sentiment=NBClassifier.classify(extract_features(getFeatureVector(processedTestTweet)))
+ 
+ if(sentiment=='H'):
+     return "Heart Disease"
+ if(sentiment=="C"):
+     return "Catarct Disease"
+ if(sentiment=="N"):
+     return "No Disease"
+     
+ return sentiment
 
 
 
+print pdreturnclass("My heart hurts")
