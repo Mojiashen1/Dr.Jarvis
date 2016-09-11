@@ -43,7 +43,7 @@ router.post('/disease', function(req, res, next) {
             if (err) {
               console.log("err saving user", err);
             } else {
-              res.send(JSON.parse("{'disease': '" + disease + "'}"));
+              res.send(disease);
             }
           })
         }
@@ -54,12 +54,13 @@ router.post('/disease', function(req, res, next) {
 });
 
 router.post('/medicine', function(req, res, next) {
+  console.log('HI');
   User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
     console.log('disease', user);
     if (err) {
       console.log(err, "err populating disease");
     } else {
-      res.send(JSON.parse("{'medicine': '" + user.disease.medicine + "'},{'usage': '" + user.disease.usage + "'}"));
+      res.send(user.disease.medicine + ',' + user.disease.usage);
     }
   })
 });
