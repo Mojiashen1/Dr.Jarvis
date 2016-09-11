@@ -38,7 +38,7 @@ router.post('/disease', function(req, res, next) {
   } else {
     disease = 'sophistication'
   }
-  Disease({"name": disease}, function(err, d) {
+  Disease.findOne({"name": disease}, function(err, d) {
     if (err) {
       console.log(err, "err finding disease");
     } else {
