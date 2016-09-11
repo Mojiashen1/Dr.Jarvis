@@ -1,0 +1,13 @@
+HelloWorldIntent hello
+HelloWorldIntent hi
+PainIntent my {slot value|body_parts}
+MedicineIntent what medicine  should I take for {fever| disease} 
+MedicineIntent what pills should I take for {cold| disease} 
+ReportIntent Can you send a report to my Doctor
+ReportIntent yo can you send stuff to my doctor
+GoodbyeIntent bye
+GoodbyeIntent cya
+YesIntent yes
+YesIntent ya
+NoIntent No
+NoIntent Nope

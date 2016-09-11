@@ -1,0 +1,62 @@
+{
+    "intents": [
+                {
+                "intent": "PainIntent",
+                "slots": [
+                          {
+                          "name": "body_parts",
+                          "type": "AMAZON.LITERAL"
+                          }
+                          ]
+                },
+                {
+                "intent": "MedicineIntent",
+                "slots": [
+                          {
+                          "name": "disease",
+                          "type": "AMAZON.LITERAL"
+                          }
+                          ]
+                },
+                {
+                "intent": "GetHospitalIntent"
+                },
+                {
+                "intent": "HelloWorldIntent"
+                },
+                {
+                "intent": "AMAZON.StartOverIntent"
+                },
+                {
+                "intent": "AMAZON.RepeatIntent"
+                },
+                {
+                "intent": "AMAZON.HelpIntent"
+                },
+                {
+                "intent": "ReportIntent"
+                },
+                {
+                "intent": "AMAZON.YesIntent"
+                },
+                {
+                "intent": "AMAZON.NoIntent"
+                },
+                {
+                "intent": "AMAZON.StopIntent"
+                },
+                {
+                "intent": "AMAZON.CancelIntent"
+                },
+                {
+                "intent": "GoodbyeIntent"
+                },
+                {
+                "intent": "YesIntent"
+                },
+                {
+                "intent": "NoIntent"
+                }
+                ]
+}
+
