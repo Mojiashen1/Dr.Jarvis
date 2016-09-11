@@ -14,19 +14,19 @@ router.get('/', function(req, res, next) {
 /* GET home page. */
 router.post('/disease', function(req, res, next) {
   //Praneet's algorithm
-  // var disease = "Heartache";
-  var symptoms = req.body.symptoms;
-  var spawn = require("child_process").spawn;
-  var process = spawn('python',["./python/S.py", symptoms]);
-
-  var data = ""
-  var disease = "";
-  process.stdout.on('data', function (data){
-    disease += data
-  });
-
-  process.on('exit', function()
-  {
+  var disease = "Heartache";
+  // var symptoms = req.body.symptoms;
+  // var spawn = require("child_process").spawn;
+  // var process = spawn('python',["./python/S.py", symptoms]);
+  //
+  // var data = ""
+  // var disease = "";
+  // process.stdout.on('data', function (data){
+  //   disease += data
+  // });
+  //
+  // process.on('exit', function()
+  // {
       console.log("The detected disease is " + disease);
       console.log("Exit code is " + process.exitCode);
 
@@ -48,7 +48,7 @@ router.post('/disease', function(req, res, next) {
           })
         }
       })
-  });
+  // });
 
 
 });
