@@ -3,6 +3,8 @@ var router = express.Router();
 var Twilio = require('./twilio');
 var User = require('../models/models').User;
 var Disease = require('../models/models').Disease;
+var Doctor = require('../models/models').Doctor;
+
 
 router.get('/', function(req, res, next) {
   res.send('I am ok');
@@ -11,8 +13,8 @@ router.get('/', function(req, res, next) {
 /* GET home page. */
 router.post('/disease', function(req, res, next) {
   //Praneet's algorithm
-  var symptoms = req.query["symptoms"];
-  console.log(symptoms)
+  // var disease = "Heartache";
+  var symptoms = req.body.symptoms;
   var spawn = require("child_process").spawn;
   var process = spawn('python',["./python/S.py", symptoms]);
 
@@ -40,7 +42,7 @@ router.post('/disease', function(req, res, next) {
             if (err) {
               console.log("err saving user", err);
             } else {
-              res.send("{'disease': '" + disease + "'}");
+              res.send(JSON.parse("{'disease': '" + disease + "'}"));
             }
           })
         }
@@ -62,19 +64,40 @@ router.post('/medicine', function(req, res, next) {
 });
 
 router.post('/sendMessage', function(req, res, next) {
-  var message = req.body.message; // need to construct the message
-  var number = req.body.number;
-  User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
+  console.log('first hi')
+  Doctor.findOne({}, function(err, doctor) {
+    console.log("hi")
     if (err) {
-      console.log(err, "err populating disease");
+      console.log(err, 'err finding doctor')
     } else {
-      var twilio = Object.create(Twilio);
-      twilio.sendMessage(number, "Patrick asked me to send you this: He is feeling " + user.symptom + " , and he is diagnosed with " + user.disease.name + " .\n We recommend him to take " + user.disease.medicine);
-      res.send('Sure. I have sent a text message to your doctor');
+      User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
+        if (err) {
+          console.log(err, "err populating disease");
+        } else {
+          var twilio = Object.create(Twilio);
+          twilio.sendMessage(doctor.number, "Hi, " + doctor.name + ", Patrick asked me to send you this: He is feeling " + user.symptom + " , and he is diagnosed with " + user.disease.name + " .\n We recommend him to take " + user.disease.medicine);
+          res.send('Sure. I have sent a text message to your doctor');
+        }
+      })
     }
   })
+
 });
 
+router.post('/doctor', function(req, res, next){
+  var doctor = new Doctor({
+    name: req.body.name,
+    number: req.body.number
+  })
+  doctor.save(function(err, doctor) {
+    if (err) {
+      console.log('err saving doctor', err);
+    } else {
+      //307 makes it redirect to POST
+      res.redirect(307, '/sendMessage');
+    }
+  })
+})
 
 
 module.exports = router;
