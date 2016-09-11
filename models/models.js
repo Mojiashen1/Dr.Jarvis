@@ -19,7 +19,7 @@ var userSchema = mongoose.Schema({
   phoneNumber: Number
 });
 
-var doctorSchema = mongoose.Schema({
+var peepSchema = mongoose.Schema({
   name: String,
   number: Number,
 });
@@ -35,5 +35,5 @@ var connect = process.env.MONGODBURI;
 mongoose.connect(connect);
 // userSchema.plugin(findOrCreate);
 module.exports = {User: mongoose.model('User', userSchema),
-Doctor: mongoose.model('Doctor', doctorSchema),
+Peep: mongoose.model('peep', peepSchema),
 Disease: mongoose.model('Disease', diseaseSchema)};

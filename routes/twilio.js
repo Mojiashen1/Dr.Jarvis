@@ -20,6 +20,15 @@ var twilio= {
     }, function(err, message) {
         if (err) console.log('err', err);
     })
+  },
+  call: function(toNumber) {
+    client.calls.create({
+      url: "http://demo.twilio.com/docs/voice.xml",
+      to: toNumber,
+      from: process.env.FROMNUMBER
+    }, function(err, call) {
+        process.stdout.write(call.sid);
+    });
   }
 }
 
