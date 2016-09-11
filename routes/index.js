@@ -36,7 +36,7 @@ router.post('/disease', function(req, res, next) {
         } else {
           var user = new User({
             disease: d,
-            symptom: req.body.symptom,
+            symptom: req.body.symptoms,
             phoneNumber: 5083141804
           });
           user.save(function(err, user) {
