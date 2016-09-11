@@ -27,8 +27,8 @@ router.post('/disease', function(req, res, next) {
   //
   // process.on('exit', function()
   // {
-      console.log("The detected disease is " + disease);
-      console.log("Exit code is " + process.exitCode);
+      // console.log("The detected disease is " + disease);
+      // console.log("Exit code is " + process.exitCode);
 
       Disease.findOne({"name": disease}, function(err, d) {
         if (err) {
