@@ -4,7 +4,6 @@ var Twilio = require('./twilio');
 var User = require('../models/models').User;
 var Disease = require('../models/models').Disease;
 
-<<<<<<< HEAD
 router.get('/', function(req, res, next) {
   res.send('I am ok');
 })
@@ -63,6 +62,7 @@ router.post('/medicine', function(req, res, next) {
 });
 
 router.post('/sendMessage', function(req, res, next) {
+<<<<<<< HEAD
   var message = req.body.message; // need to construct the message
   var number = req.body.number;
   User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
