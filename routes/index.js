@@ -55,7 +55,7 @@ router.post('/disease', function(req, res, next) {
 
 router.post('/medicine', function(req, res, next) {
   console.log('HI');
-  User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
+  User.findById("57d4e6f0dc0614437376ad67").populate("disease").exec(function(err, user) {
     console.log('disease', user);
     if (err) {
       console.log(err, "err populating disease");
@@ -73,7 +73,7 @@ router.post('/sendMessage', function(req, res, next) {
     } else if (doctor === null) {
       res.send("What's your doctor's name and phone number?");
     } else {
-      User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
+      User.findById("57d4e6f0dc0614437376ad67").populate("disease").exec(function(err, user) {
         if (err) {
           console.log(err, "err populating disease");
         } else {
