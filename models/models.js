@@ -29,7 +29,6 @@ var diseaseSchema = mongoose.Schema({
   medicine: String,
   usage: String,
   symptom: String,
-  medicine: String
 });
 var connect = process.env.MONGODBURI;
 
