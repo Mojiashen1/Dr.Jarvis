@@ -34,18 +34,16 @@ router.post('/disease', function(req, res, next) {
         if (err) {
           console.log(err, "err finding disease");
         } else {
-          var user = new User({
+          User.findOneAndUpdate({_id: "57d51719e90d340011cc233c"}, {
             disease: d,
             symptom: req.body.symptoms,
-            phoneNumber: 5083141804
-          });
-          user.save(function(err, user) {
-            if (err) {
-              console.log("err saving user", err);
-            } else {
-              res.send(disease);
-            }
-          })
+            phoneNumber: 5083141804}, function(err, user){
+              if (err) {
+                console.log("err saving user", err);
+              } else {
+                res.send(disease);
+              }
+            })
         }
       })
   // });
