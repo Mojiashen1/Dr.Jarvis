@@ -1,4 +1,7 @@
 node_modules
 process.env
 npm-debug.log
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> tmpbranch
