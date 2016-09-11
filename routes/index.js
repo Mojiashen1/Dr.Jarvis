@@ -66,11 +66,12 @@ router.post('/medicine', function(req, res, next) {
 });
 
 router.post('/sendMessage', function(req, res, next) {
-  console.log('first hi')
   Doctor.findOne({}, function(err, doctor) {
     console.log("hi")
     if (err) {
       console.log(err, 'err finding doctor')
+    } else if (doctor === null) {
+      res.send("What's your doctor's name and phone number?");
     } else {
       User.findById("57d4790ffef55c151e1aa2e2").populate("disease").exec(function(err, user) {
         if (err) {
