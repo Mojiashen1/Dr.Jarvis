@@ -58,7 +58,7 @@ router.post('/medicine', function(req, res, next) {
     if (err) {
       console.log(err, "err populating disease");
     } else {
-      res.send("{'medicine': '" + user.disease.medicine + "'},{'usage': '" + user.disease.usage + "'}");
+      res.send(JSON.parse("{'medicine': '" + user.disease.medicine + "'},{'usage': '" + user.disease.usage + "'}"));
     }
   })
 });
