@@ -1,13 +1,52 @@
 HelloWorldIntent hello
 HelloWorldIntent hi
-PainIntent my {slot value|body_parts}
-MedicineIntent what medicine  should I take for {fever| disease} 
-MedicineIntent what pills should I take for {cold| disease} 
-ReportIntent Can you send a report to my Doctor
-ReportIntent yo can you send stuff to my doctor
+
+PainIntent my {slot value|body_parts} hurts
+PainIntent my {slot value|body_parts} is hurting
+PainIntent I have a {slot value|body_parts} ache
+PainIntent my {slot value|body_parts} feels bad
+PainIntent my {slot value|body_parts} feels dizzy
+PainIntent my {slot value|body_parts} is sore
+PainIntent my {slot value|body_parts} pains
+PainIntent my {slot value|body_parts} are paining
+PainIntent my {slot value|body_parts} is paining
+PainIntent my {slot value|body_parts} beating fast
+
+MedicineIntent what medicine should I take for cataract
+MedicineIntent what medicine should I take for headache
+MedicineIntent what medicine should I take for heartache
+MedicineIntent what pills should I take for headache
+MedicineIntent what pills should I take for cataract
+MedicineIntent what pills should I take for heartache
+MedicineIntent what should I do for heartache
+MedicineIntent what should I take heartache
+MedicineIntent what medicine is good for headache
+MedicineIntent what recommendation do you have for cataract
+
+
+ReportIntent Can you send a report to my {slot value|person}
+ReportIntent yo can you send stuff to my {slot value|person}
+ReportIntent can you send a message to my {slot value|person}
+ReportIntent can you tell my {slot value|person} how i am doing
+ReportIntent can you update my {slot value|person}
+
+EmergencyIntent can you call {slot value|person}
+EmergencyIntent call {slot value|person}
+
+
 GoodbyeIntent bye
+GoodbyeIntent goodbye
 GoodbyeIntent cya
+
 YesIntent yes
 YesIntent ya
+YesIntent sure
+YesIntent sounds good
+
 NoIntent No
 NoIntent Nope
+
+PictureIntent Also I fell down
+PictureIntent I injured myself 
+PictureIntent Can you take a look at my injury
+PictureIntent I fell down can you take a look at my injury
